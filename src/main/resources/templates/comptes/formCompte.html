@@ -17,17 +17,17 @@
     <div class="container mt-3">
         <h2>Création d'un compte</h2>
         <form method="post" th:action="@{/public/savecompte}">
-            <div class="mb-3 mt-3 col-sm-5">
+            <div class="mb-3 mt-3 col-sm-4">
                 <label for="pseudo">Pseudo:</label>
                 <input type="text" class="form-control" id="pseudo" placeholder="Pseudo" name="pseudo"
                        th:field="*{compte.pseudo}">
             </div>
-            <div class="mb-3 mt-3 col-sm-5">
+            <div class="mb-3 mt-3 col-sm-4">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="Email" name="email"
                        th:field="*{compte.email}">
             </div>
-            <div class="mb-3 mt-3 col-sm-5">
+            <div class="mb-3 mt-3 col-sm-4">
                 <label for="pwd">Password:</label>
                 <input type="password" class="form-control" id="pwd" placeholder="Mot de passe" name="pswd"
                        th:field="*{compte.motDePasse}">
