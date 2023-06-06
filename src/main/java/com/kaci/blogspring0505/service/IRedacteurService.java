@@ -33,6 +33,8 @@ public interface IRedacteurService {
 
     //DELETE
     // Supprime un commentaire
+    String supprimeCommentaire(Long idCommentaire);
+
 
     //fonctions de recherche --------
     //Article

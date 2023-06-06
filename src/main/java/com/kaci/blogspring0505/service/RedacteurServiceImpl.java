@@ -59,10 +59,23 @@ public class RedacteurServiceImpl implements IRedacteurService {
 
     @Override
     public String supprimeArticle(Long idArticle) {
-        Article articleSilExiste = iArticleRepository.chercheArticleId(idArticle); // cas erreur ?
-        iArticleRepository.delete(articleSilExiste);
+        Article articleSilExiste = iArticleRepository.chercheArticleId(idArticle); //
+        //Il faut d'abord supprimer les commentaires qui lui sont associés
+        //1-suppression des commentaires
+        // Méthode 1 : JPA
+        //List<Commentaire> liste=iCommentaireRepository.deleteByArticle(articleSilExiste);
+        // Méthode 2 : @Query
+        iCommentaireRepository.supprimeCommentairesArticle(articleSilExiste);
+        //2- ensuite suppression de l'article
+        //Méthode 1 : JPA
+        //iArticleRepository.deleteByIdArticle(idArticle);
+        // Méthode 2 : @Query
+        iArticleRepository.supprimeArticle(idArticle);
+
         return "Article supprimé !";
     }
+    
+    /** ------------------------*** */
     //fonctions de recherche --------
     //Article
     @Override
@@ -98,6 +111,12 @@ public class RedacteurServiceImpl implements IRedacteurService {
 
     //DELETE
     // Supprime un commentaire
+    @Override
+    public String supprimeCommentaire(Long idCommentaire) {
+        iCommentaireRepository.supprimeCommentaireId(idCommentaire);
+        return "Commentaire supprimé";
+    }
+
 
     /***** Compte *******************/
     //CREATE
@@ -127,5 +146,6 @@ public class RedacteurServiceImpl implements IRedacteurService {
     public Compte chercheComptePseudo(String pseudo) {
         return iCompteRepository.chercheComptePseudo(pseudo);
     }
+  
 
 }
